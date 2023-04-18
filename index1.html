@@ -29,7 +29,8 @@
       analytics.track('Button Clicked', {
         'button_type': 'Signup',
         'button_text': 'Get Started',
-        'button_color': 'green'
+        'button_color': 'green',
+        'original_to_sub_msids_9681767': 'xyz'
       })"> Track: Button Clicked<span id="collapseExample" class="collapse" style="font-size:.85em"><br>type='Signup'</span> </button> <button class="btn btn-primary" onclick="
       analytics.identify('12345', {
         'first_name': 'Anna',
@@ -54,7 +55,8 @@
       analytics.track('Signed Up', 
         {
           'account_type': 'free', 
-          'signup_type': 'organic' 
+          'signup_type': 'organic',
+          'original_to_sub_msids_9681767': 'abcd'
           });
           "> Track: Signed Up<span id="collapseExample" class="collapse" style="font-size:.85em"><br>& identify new user (Anna Lytics)</span> </button> <br> <br> </div> </div>  <div class="container mb-0 p-0" style="max-width:950px;"> <div class="bg-body callout mb-5 p-3 rounded shadow text-center"> <h2>Activation</h2> <p>Newly signed-up user clicks activation email and updates profile</p> <button class="btn btn-primary" onclick="
       analytics.track('Email Link Clicked', {
