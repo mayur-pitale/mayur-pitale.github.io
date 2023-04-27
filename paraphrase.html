@@ -48,11 +48,11 @@
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
             myHeaders.append("Authorization", "Bearer sgp_OjsA9CzOYYFUwztxxs4k2KxI0r5kG4HrgqqODxtSbTuCTyZRiTmoxC0IZG9eQVF2");
-            myHeaders.append("Access-Control-Allow-Origin: *");
+            myHeaders.append("Access-Control-Allow-Origin", "*");
 
-myHeaders.append('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+myHeaders.append("Access-Control-Allow-Methods" "GET, POST, OPTIONS");
 
-myHeaders.append("Access-Control-Allow-Headers: Content-Type, Authorization, Password");
+myHeaders.append("Access-Control-Allow-Headers", "Content-Type, Authorization, Password");
 
             var raw = JSON.stringify({
               "style": "general",
