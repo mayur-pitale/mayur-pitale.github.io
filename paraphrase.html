@@ -6,7 +6,7 @@
     
 <script>
   !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="GoRXaMcJac2hbqomLyACU6RYHT6guMco";;analytics.SNIPPET_VERSION="4.15.3";
-  analytics.load("GoRXaMcJac2hbqomLyACU6RYHT6guMco");
+  analytics.load("4HdpFXkRdSTeXBd2vFtsZfjeeDVVNiCP");
   analytics.page();
   }}();
 </script>
@@ -45,35 +45,9 @@
             var form = e.target;
             var text_to_paraphrase = form["text_to_paraphrase"].value;
             
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Authorization", "Bearer sgp_OjsA9CzOYYFUwztxxs4k2KxI0r5kG4HrgqqODxtSbTuCTyZRiTmoxC0IZG9eQVF2");
-            myHeaders.append("Access-Control-Allow-Origin", "*");
-
-myHeaders.append("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-
-myHeaders.append("Access-Control-Allow-Headers", "Content-Type, Authorization, Password");
-
-            var raw = JSON.stringify({
-              "style": "general",
-              "text": text_to_paraphrase,
-              "numResults": 10
+            analytics.track('Text Submitted', {
+                text: text_to_paraphrase,
             });
-
-            var requestOptions = {
-              mode: 'cors',
-              method: 'POST',
-              headers: myHeaders,
-              body: raw,
-              redirect: 'follow'
-            };
-
-            fetch("https://fn.segmentapis.com/?b=cldhQ3M3UDg2SDVvcFNiRHU3Vzl6azo6R3BEdEJvOTF1U3dDT3ZVT0pVSDN0U2hNVGk4WW5sb3U=", requestOptions)
-              .then(response => response.text())
-              .then(result => console.log(result))
-              .catch(error => console.log('error', error));
-  
-  
         }
     </script>
 </body>
