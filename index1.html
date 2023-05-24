@@ -27,13 +27,13 @@
           )
           "> Page: Landing<span id="collapseExample" class="collapse" style="font-size:.85em"><br>via Google Paid Search</span> </button> <button class="btn btn-primary" onclick="
       analytics.track('Button Clicked', 
-      {'context': {'traits': {'email': 'nil@yahoo.com'} } },
       {
         'button_type': 'Signup',
         'button_text': 'Get Started',
         'button_color': 'green',
         'original_to_sub_msids_9681767': 'xyz'
-      })"> Track: Button Clicked<span id="collapseExample" class="collapse" style="font-size:.85em"><br>type='Signup'</span> </button> <button class="btn btn-primary" onclick="
+      },
+    {'context': {'traits': {'email': 'nil@yahoo.com'} } })"> Track: Button Clicked<span id="collapseExample" class="collapse" style="font-size:.85em"><br>type='Signup'</span> </button> <button class="btn btn-primary" onclick="
       analytics.identify('12345', {
         'first_name': 'Anna',
         'last_name': 'Lytics',
