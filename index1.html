@@ -26,7 +26,9 @@
           }
           )
           "> Page: Landing<span id="collapseExample" class="collapse" style="font-size:.85em"><br>via Google Paid Search</span> </button> <button class="btn btn-primary" onclick="
-      analytics.track('Button Clicked', {
+      analytics.track('Button Clicked', 
+      {'context': {'traits': {'email': 'nil@yahoo.com'} } },
+      {
         'button_type': 'Signup',
         'button_text': 'Get Started',
         'button_color': 'green',
