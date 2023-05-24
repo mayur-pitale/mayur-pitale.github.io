@@ -53,6 +53,11 @@
         'multiple_userid_same_email': 'true'
       })
       analytics.track('Signed Up', 
+      {
+      context: { 
+       traits: { 'email': '<nil>@yahoo.com' }
+      }
+     }
         {
           'account_type': 'free', 
           'signup_type': 'organic',
