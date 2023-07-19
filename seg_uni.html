@@ -59,22 +59,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             e.preventDefault();
             var form = e.target;
             var email = form["email"].value;
-            var title = form["title"].value;
             var age = form["age"].value;
             var gender = form["gender"].value;
-            var comp_id = form["comp_id"].value;
-            var comp_name = form["comp_name"].value;
             var fullname = form["fullname"].value;
-            var phone = form["phone"].value;
-            var state = form["state"].value;
-            var rating = form["rating"].value
-            var details = form["details"].value;
-            var home_city = form["home_city"].value;
-            var home_zip = form["home_zip"].value;
-            var home_country = form["home_country"].value;
-            var home_street = form["home_street"].value;
-            var home_state = form["home_state"].value;
-            var rn = Math.floor((Math.random() * 1000000) + 1);
             
             analytics.identify(12345, {
                 email: email,
