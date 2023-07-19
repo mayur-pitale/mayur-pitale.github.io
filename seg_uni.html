@@ -65,7 +65,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             
             analytics.identify(12345, {
                 email: email,
-                title: title,
+                // title: title,
                 age: age,
                 gender: gender,
                 leadSource: 'Newsletter',
@@ -96,6 +96,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             analytics.track('Form Submitted', {
                 type: "Lead Generation",
+                email: email
             });
 
         }
