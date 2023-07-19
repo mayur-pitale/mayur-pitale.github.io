@@ -72,22 +72,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 is_first_session: 'true',
                 clicked_random_link: 'true',
                 viewed_product: 'true',
-                company: {
-                    id: comp_id,
-                    name: comp_name
-                },
+                // company: {
+                //     id: comp_id,
+                //     name: comp_name
+                // },
                 name: fullname,
                 category: 'Marketing',
-                phone: phone,
-                state: state,
-                rating: rating,
-                address: {
-                    city: home_city,
-                    postalCode: home_zip,
-                    country: home_country,
-                    street: home_street,
-                    state: home_state
-                }
+                // phone: phone,
+                // state: state,
+                // rating: rating,
+                // address: {
+                //     city: home_city,
+                //     postalCode: home_zip,
+                //     country: home_country,
+                //     street: home_street,
+                //     state: home_state
+                // }
             }, {
                 'integrations': {
                     'Salesforce': true
@@ -96,7 +96,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             analytics.track('Form Submitted', {
                 type: "Lead Generation",
-                email: email
+                email: email,
+                name: fullname
             });
 
         }
