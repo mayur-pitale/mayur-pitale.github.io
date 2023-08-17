@@ -53,6 +53,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-PT8B963');</script> -->
     <!-- End Google Tag Manager -->
+
+    <script>
+    // Get a reference to the form element
+    const form = document.getElementById('form');
+
+    // Add a submit event listener to the form
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from actually submitting
+
+      // Change the URL when the form is submitted
+      // You can replace 'https://www.example.com' with your desired URL
+      window.location.href = 'https://mayur-pitale.github.io/seg_uni.html/?ajs_uid=12345';
+    });
+  </script>
     
     <script type="text/javascript">
         function identify(e) {
