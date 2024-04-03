@@ -248,7 +248,16 @@ _refiner('identifyUser', {
     name: 'Jane1 Doe1', // Replace with user name
 });
 
-  _refiner('showForm', '8f92a9a0-f194-11ee-b577-8b19c0fcfd3b');
+  <script>
+// Attach a click event listener to the button
+document.getElementById('surveyButton').addEventListener('click', function() {
+    // Trigger the display of the survey using Refiner's JavaScript SDK
+    _refiner('showForm', '8f92a9a0-f194-11ee-b577-8b19c0fcfd3b');
+});
+</script>
+
+<!-- Include Refiner's JavaScript SDK -->
+<script src="https://cdn.refiner.io/v1.0/refiner.js"></script>
 
 </script>
 <!-- End of Refiner client code snippet -->
