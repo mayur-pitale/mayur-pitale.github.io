@@ -242,17 +242,18 @@
 
 window._refinerQueue = window._refinerQueue || []; function _refiner(){_refinerQueue.push(arguments);} _refiner('setProject', '358d7d60-eb41-11ee-9453-45831f42cf7a'); (function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src="https://js.refiner.io/v001/client.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();
 
-_refiner('identifyUser', {
-    id: 'REPLACE-WITH-USER-ID1', // Replace with your user ID
-    email: 'jane1@example.com', // Replace with user Email
-    name: 'Jane1 Doe1', // Replace with user name
-});
+// _refiner('identifyUser', {
+//     id: 'REPLACE-WITH-USER-ID1', // Replace with your user ID
+//     email: 'jane1@example.com', // Replace with user Email
+//     name: 'Jane1 Doe1', // Replace with user name
+// });
 </script>
   
-<button id="surveyButton">Take Survey</button>
+<a href="#" id="surveyLink">Take Survey</a>
 <script>  
 // Attach a click event listener to the button
-document.getElementById('surveyButton').addEventListener('click', function() {
+  document.getElementById('surveyLink').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
     // Trigger the display of the survey using Refiner's JavaScript SDK
     _refiner('showForm', '8f92a9a0-f194-11ee-b577-8b19c0fcfd3b');
 });
