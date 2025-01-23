@@ -262,46 +262,45 @@ _refiner('showForm', '8f92a9a0-f194-11ee-b577-8b19c0fcfd3b');
 
 <!-- Time spent on page -->
 <script>
-  let startTime = null; // Stores the time when the user lands on the page
-let timeSpent = 0;    // Accumulates time spent on the page
+  let startTime = Date.now();
 
-// Start the timer when the page loads
-function startTimer() {
-  startTime = Date.now();
-}
-
-// Calculate time spent and send the data to Segment
 function sendTimeSpentEvent() {
-  if (startTime) {
-    const endTime = Date.now();
-    timeSpent += endTime - startTime; // Calculate time spent in milliseconds
+  const endTime = Date.now();
+  const timeSpent = Math.round((endTime - startTime) / 1000);
 
-    // Convert to seconds (optional)
-    const timeSpentInSeconds = Math.round(timeSpent / 1000);
-
-    // Send the data to Segment
-    analytics.track('Time Spent on Page', {
+  const eventPayload = {
+    event: 'Time Spent on Page 2',
+    properties: {
+      timeSpent: timeSpent, // Time in seconds
       page: window.location.pathname,
-      timeSpent: timeSpentInSeconds, // Time in seconds
+      title: document.title,
+    },
+  };
+
+  // Use sendBeacon for reliability during page unload
+  const analyticsEndpoint = 'https://api.segment.io.com/track';
+  const payload = JSON.stringify(eventPayload);
+
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(analyticsEndpoint, payload);
+  } else {
+    // Fallback for browsers that don't support sendBeacon
+    fetch(analyticsEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: payload,
     });
-
-    console.log(`Time Spent on Page: ${timeSpentInSeconds} seconds`);
   }
 }
 
-// Handle visibility changes (e.g., tab switch, minimize)
-function handleVisibilityChange() {
+window.addEventListener('beforeunload', sendTimeSpentEvent);
+
+document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden') {
-    sendTimeSpentEvent(); // Send event when the page is hidden
-  } else if (document.visibilityState === 'visible') {
-    startTimer(); // Restart the timer when the page becomes visible
+    sendTimeSpentEvent();
   }
-}
+});
 
-// Attach event listeners
-window.addEventListener('load', startTimer);
-window.addEventListener('beforeunload', sendTimeSpentEvent); // Send data when user leaves the page
-document.addEventListener('visibilitychange', handleVisibilityChange);
 </script>
   
 <!-- <a href="#" id="surveyLink">Take Survey</a>
