@@ -268,32 +268,40 @@ function sendTimeSpentEvent() {
   const endTime = Date.now();
   const timeSpent = Math.round((endTime - startTime) / 1000);
 
-  const eventPayload = {
-    event: 'Time Spent on Page 2',
-    properties: {
-      timeSpent: timeSpent, // Time in seconds
-      page: window.location.pathname,
-      title: document.title,
-    },
-  };
+  // Use Segment's analytics.track to send the event
+  analytics.track('Time Spent on Page', {
+    timeSpent: timeSpent, // Time in seconds
+    page: window.location.pathname,
+    title: document.title,
+  });
 
-  // Use sendBeacon for reliability during page unload
-  const analyticsEndpoint = 'https://api.segment.io/v1/track';
-  const payload = JSON.stringify(eventPayload);
-
-  if (navigator.sendBeacon) {
-    navigator.sendBeacon(analyticsEndpoint, payload);
-  } else {
-    // Fallback for browsers that don't support sendBeacon
-    fetch(analyticsEndpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: payload,
-    });
+  // Optionally flush events to ensure they are sent before unload
+  if (typeof analytics.flush === 'function') {
+    analytics.flush();
   }
 }
 
-window.addEventListener('beforeunload', sendTimeSpentEvent);
+// Listen for page unload or visibility change
+window.addEventListener('beforeunload', () => {
+  if (navigator.sendBeacon) {
+    // If sendBeacon is available, prefer it for reliability
+    const endTime = Date.now();
+    const timeSpent = Math.round((endTime - startTime) / 1000);
+
+    const payload = JSON.stringify({
+      event: 'Time Spent on Page',
+      properties: {
+        timeSpent: timeSpent,
+        page: window.location.pathname,
+        title: document.title,
+      },
+    });
+
+    navigator.sendBeacon('https://api.segment.io/v1/track', payload);
+  } else {
+    sendTimeSpentEvent(); // Fallback to analytics.track
+  }
+});
 
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden') {
