@@ -278,7 +278,7 @@ function sendTimeSpentEvent() {
   };
 
   // Use sendBeacon for reliability during page unload
-  const analyticsEndpoint = 'https://api.segment.io.com/track';
+  const analyticsEndpoint = 'https://api.segment.io/v1/track';
   const payload = JSON.stringify(eventPayload);
 
   if (navigator.sendBeacon) {
