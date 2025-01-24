@@ -262,52 +262,51 @@ _refiner('showForm', '8f92a9a0-f194-11ee-b577-8b19c0fcfd3b');
 
 <!-- Time spent on page -->
 <script>
-  let startTime = Date.now();
+let startTime = Date.now();
 
-function sendTimeSpentEvent() {
+function sendTimeSpentEvent(useBeacon = false) {
   const endTime = Date.now();
   const timeSpent = Math.round((endTime - startTime) / 1000);
 
-  // Use Segment's analytics.track to send the event
-  analytics.track('Time Spent on Page', {
-    timeSpent: timeSpent, // Time in seconds
-    page: window.location.pathname,
-    title: document.title,
-  });
+  const eventPayload = {
+    event: 'Time Spent on Page',
+    properties: {
+      timeSpent: timeSpent,
+      page: window.location.pathname,
+      title: document.title,
+    },
+  };
 
-  // Optionally flush events to ensure they are sent before unload
-  if (typeof analytics.flush === 'function') {
-    analytics.flush();
+  if (useBeacon && navigator.sendBeacon) {
+    // Use sendBeacon for reliable delivery during page/tab close
+    const beaconPayload = JSON.stringify({
+      writeKey: '<YOUR_SEGMENT_WRITE_KEY>',
+      ...eventPayload,
+    });
+
+    navigator.sendBeacon('https://api.segment.io/v1/track', beaconPayload);
+  } else {
+    // Use analytics.track for other cases
+    analytics.track('Time Spent on Page', {
+      timeSpent: timeSpent,
+      page: window.location.pathname,
+      title: document.title,
+    });
   }
 }
 
-// Listen for page unload or visibility change
-window.addEventListener('beforeunload', () => {
-  if (navigator.sendBeacon) {
-    // If sendBeacon is available, prefer it for reliability
-    const endTime = Date.now();
-    const timeSpent = Math.round((endTime - startTime) / 1000);
-
-    const payload = JSON.stringify({
-      event: 'Time Spent on Page',
-      properties: {
-        timeSpent: timeSpent,
-        page: window.location.pathname,
-        title: document.title,
-      },
-    });
-
-    navigator.sendBeacon('https://api.segment.io/v1/track', payload);
-  } else {
-    sendTimeSpentEvent(); // Fallback to analytics.track
-  }
-});
-
+// Handle visibility changes (e.g., switching tabs)
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden') {
-    sendTimeSpentEvent();
+    sendTimeSpentEvent(); // Use analytics.track when tab is hidden
   }
 });
+
+// Handle page unload (e.g., closing the tab or navigating away)
+window.addEventListener('beforeunload', () => {
+  sendTimeSpentEvent(true); // Use sendBeacon for reliable delivery
+});
+
 
 </script>
   
