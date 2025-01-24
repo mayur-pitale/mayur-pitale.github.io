@@ -280,7 +280,7 @@ function sendTimeSpentEvent(useBeacon = false) {
   if (useBeacon && navigator.sendBeacon) {
     // Use sendBeacon for reliable delivery during page/tab close
     const beaconPayload = JSON.stringify({
-      writeKey: '<YOUR_SEGMENT_WRITE_KEY>',
+      writeKey: '799HoIXmlq8s7WZjMRwRaRViYcnnKJzQ',
       ...eventPayload,
     });
 
