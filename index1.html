@@ -19,7 +19,10 @@ function OptanonWrapper() { }
     maxage: 315569520 // 10 years in seconds
   }
 });
-  analytics.page();
+  // analytics.page();
+  analytics.page({
+  url: 'http://segment.com/?ajs_uid=123456789abcd&ajs_event=Clicked%20Email&ajs_aid=abc123&ajs_prop_emailCampaign=First+Touch&ajs_trait_name=Karl+Jr.'
+});                                                                                                                                                                                                   
   }}();
 </script>
 
