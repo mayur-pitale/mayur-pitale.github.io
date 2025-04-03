@@ -1,0 +1,5 @@
+userId,event,properties.plan,properties.accountType,context.ip,context.device.id,timestamp
+ 1,test event,bronze,Facebook,175.154.50.123,1,2019-05-11T20:32:27.940Z
+ 2,test event,silver,Twitter,40.110.228.56,2,2019-05-12T20:32:27.940Z
+ 3,test event,gold,Instagram,175.155.243.133,3,2019-05-13T20:32:27.940Z
+ 4,test event,platinum,Pinterest,112.252.20.73,4,2019-05-14T20:32:27.940Z
